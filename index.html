@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabela de Preços & Simulador de Propostas | Estratégia Digital</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              500: '#22c55e',
+              600: '#16a34a',
+              900: '#14532d',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen">
+
+  <header class="border-b border-slate-800 bg-slate-950/70 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-1">
+          Estratégia & Crescimento Digital
+        </span>
+        <h1 class="text-2xl font-bold tracking-tight text-white">Estrutura de Preços & Simulador de Escopo</h1>
+      </div>
+
+      <nav class="flex space-x-2 bg-slate-900 p-1.5 rounded-xl border border-slate-800">
+        <button onclick="switchTab('simulator')" id="tab-btn-simulator" class="px-4 py-2 rounded-lg text-sm font-semibold transition bg-emerald-600 text-white shadow-sm">
+          Simulador de Combinações
+        </button>
+        <button onclick="switchTab('catalog')" id="tab-btn-catalog" class="px-4 py-2 rounded-lg text-sm font-semibold transition text-slate-400 hover:text-white hover:bg-slate-800/60">
+          Tabela & Escopos Detalhados
+        </button>
+        <button onclick="switchTab('variable')" id="tab-btn-variable" class="px-4 py-2 rounded-lg text-sm font-semibold transition text-slate-400 hover:text-white hover:bg-slate-800/60">
+          Modelo Fixo + Variável
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <section id="view-simulator" class="space-y-8">
+      <div class="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+        <div class="space-y-1 max-w-3xl">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+            Montador de Hipóteses & Proposta Personalizada
+          </h2>
+          <p class="text-sm text-slate-400">
+            Selecione uma ou mais frentes de atuação para compor a proposta. Você pode alternar entre o valor mínimo, teto de investimento ou média ponderada de cada pacote.
+          </p>
+        </div>
+        <div class="flex items-center gap-3">
+          <label class="text-xs font-semibold uppercase tracking-wider text-slate-400">Referência:</label>
+          <select id="price-mode" onchange="calculateProposal()" class="bg-slate-800 border border-slate-700 text-slate-200 text-sm rounded-lg px-3 py-2 font-medium focus:ring-2 focus:ring-emerald-500 outline-none">
+            <option value="min">Piso (Mínimo)</option>
+            <option value="avg" selected>Médio (Sugerido)</option>
+            <option value="max">Teto (Máximo)</option>
+          </select>
+          <button onclick="resetSimulator()" class="text-xs text-slate-400 hover:text-slate-200 underline px-2 py-1">
+            Limpar
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-8 space-y-4">
+          <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+            <h3 class="text-base font-bold text-slate-200 uppercase tracking-wider text-xs">Módulos de Serviço Disponíveis</h3>
+            <span class="text-xs text-slate-400">Marque as opções para combinar</span>
+          </div>
+
+          <div class="service-selector bg-slate-950 border border-slate-800 rounded-xl p-5 hover:border-slate-700 transition" data-category="instagram">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div class="flex items-start gap-3">
+                <input type="checkbox" id="check-instagram" onchange="toggleModule('instagram')" class="mt-1 w-5 h-5 rounded bg-slate-900 border-slate-700 text-emerald-600 focus:ring-emerald-500">
+                <div>
+                  <label for="check-instagram" class="font-bold text-white text-base cursor-pointer">Instagram Estratégico (~50k)</label>
+                  <p class="text-xs text-slate-400 mt-0.5">Diagnóstico, linhas editoriais, hashtags, relatórios e reuniões de acompanhamento.</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 pl-8 sm:pl-0">
+                <select id="tier-instagram" onchange="calculateProposal()" disabled class="bg-slate-900 border border-slate-800 text-slate-200 text-sm rounded-lg px-3 py-2 disabled:opacity-40 focus:ring-2 focus:ring-emerald-500 outline-none">
+                  <option value="basic" data-min="2000" data-max="2500">Básico (R$ 2.000 - 2.500)</option>
+                  <option value="intermediate" data-min="3000" data-max="4000" selected>Intermediário (R$ 3.000 - 4.000)</option>
+                  <option value="premium" data-min="5000" data-max="6000">Premium (R$ 5.000 - 6.000)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-selector bg-slate-950 border border-slate-800 rounded-xl p-5 hover:border-slate-700 transition" data-category="completo">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div class="flex items-start gap-3">
+                <input type="checkbox" id="check-completo" onchange="toggleModule('completo')" class="mt-1 w-5 h-5 rounded bg-slate-900 border-slate-700 text-emerald-600 focus:ring-emerald-500">
+                <div>
+                  <label for="check-completo" class="font-bold text-white text-base cursor-pointer">Estratégia Completa & Alto Ticket</label>
+                  <p class="text-xs text-slate-400 mt-0.5">Sinergia total: Presença Online + Negócio Local + E-commerce + Foco em Alto Valor.</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 pl-8 sm:pl-0">
+                <select id="tier-completo" onchange="calculateProposal()" disabled class="bg-slate-900 border border-slate-800 text-slate-200 text-sm rounded-lg px-3 py-2 disabled:opacity-40 focus:ring-2 focus:ring-emerald-500 outline-none">
+                  <option value="basic" data-min="4000" data-max="5000">Básico (R$ 4.000 - 5.000)</option>
+                  <option value="intermediate" data-min="8000" data-max="10000" selected>Intermediário (R$ 8.000 - 10.000)</option>
+                  <option value="premium" data-min="15000" data-max="20000">Premium (R$ 15.000 - 20.000)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-selector bg-slate-950 border border-slate-800 rounded-xl p-5 hover:border-slate-700 transition" data-category="local">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div class="flex items-start gap-3">
+                <input type="checkbox" id="check-local" onchange="toggleModule('local')" class="mt-1 w-5 h-5 rounded bg-slate-900 border-slate-700 text-emerald-600 focus:ring-emerald-500">
+                <div>
+                  <label for="check-local" class="font-bold text-white text-base cursor-pointer">Negócio Local & Tráfego Regional</label>
+                  <p class="text-xs text-slate-400 mt-0.5">Google Meu Negócio, SEO regional, engajamento comunitário e atração física.</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 pl-8 sm:pl-0">
+                <select id="tier-local" onchange="calculateProposal()" disabled class="bg-slate-900 border border-slate-800 text-slate-200 text-sm rounded-lg px-3 py-2 disabled:opacity-40 focus:ring-2 focus:ring-emerald-500 outline-none">
+                  <option value="basic" data-min="2500" data-max="3500">Básico (R$ 2.500 - 3.500)</option>
+                  <option value="intermediate" data-min="5000" data-max="7000" selected>Intermediário (R$ 5.000 - 7.000)</option>
+                  <option value="premium" data-min="10000" data-max="15000">Premium (R$ 10.000 - 15.000)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-selector bg-slate-950 border border-slate-800 rounded-xl p-5 hover:border-slate-700 transition" data-category="ecommerce">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div class="flex items-start gap-3">
+                <input type="checkbox" id="check-ecommerce" onchange="toggleModule('ecommerce')" class="mt-1 w-5 h-5 rounded bg-slate-900 border-slate-700 text-emerald-600 focus:ring-emerald-500">
+                <div>
+                  <label for="check-ecommerce" class="font-bold text-white text-base cursor-pointer">E-commerce & Aceleração de Vendas</label>
+                  <p class="text-xs text-slate-400 mt-0.5">Otimização de funil, SEO técnico para produtos, e-mail marketing e ads de alta conversão.</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 pl-8 sm:pl-0">
+                <select id="tier-ecommerce" onchange="calculateProposal()" disabled class="bg-slate-900 border border-slate-800 text-slate-200 text-sm rounded-lg px-3 py-2 disabled:opacity-40 focus:ring-2 focus:ring-emerald-500 outline-none">
+                  <option value="basic" data-min="3000" data-max="4500">Básico (R$ 3.000 - 4.500)</option>
+                  <option value="intermediate" data-min="6000" data-max="8000" selected>Intermediário (R$ 6.000 - 8.000)</option>
+                  <option value="premium" data-min="12000" data-max="18000">Premium (R$ 12.000 - 18.000)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-selector bg-slate-950 border border-slate-800 rounded-xl p-5 hover:border-slate-700 transition" data-category="lancamento">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div class="flex items-start gap-3">
+                <input type="checkbox" id="check-lancamento" onchange="toggleModule('lancamento')" class="mt-1 w-5 h-5 rounded bg-slate-900 border-slate-700 text-emerald-600 focus:ring-emerald-500">
+                <div>
+                  <label for="check-lancamento" class="font-bold text-white text-base cursor-pointer">Lançamento de Infoprodutos (Fixo)</label>
+                  <p class="text-xs text-slate-400 mt-0.5">Pré-lançamento, captação de leads, automação, eventos ao vivo, carrinho e pós-venda.</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 pl-8 sm:pl-0">
+                <select id="tier-lancamento" onchange="calculateProposal()" disabled class="bg-slate-900 border border-slate-800 text-slate-200 text-sm rounded-lg px-3 py-2 disabled:opacity-40 focus:ring-2 focus:ring-emerald-500 outline-none">
+                  <option value="basic" data-min="4000" data-max="6000">Básico (R$ 4.000 - 6.000)</option>
+                  <option value="intermediate" data-min="8000" data-max="12000" selected>Intermediário (R$ 8.000 - 12.000)</option>
+                  <option value="premium" data-min="15000" data-max="25000">Premium (R$ 15.000 - 25.000)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-4">
+          <div class="sticky top-24 bg-gradient-to-b from-slate-950 to-slate-900 border border-emerald-500/30 rounded-2xl p-6 shadow-2xl space-y-6">
+            <div class="border-b border-slate-800 pb-4">
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Resumo do Investimento</span>
+              <h4 class="text-xl font-extrabold text-white mt-1">Hipótese Selecionada</h4>
+            </div>
+
+            <div id="proposal-items" class="space-y-3 min-h-[120px] text-sm">
+              <p class="text-slate-500 italic text-xs">Nenhum serviço selecionado no momento. Marque as opções ao lado para calcular.</p>
+            </div>
+
+            <div class="pt-4 border-t border-slate-800 space-y-2">
+              <div class="flex justify-between text-xs text-slate-400">
+                <span>Faixa Mínima Estimada:</span>
+                <span id="total-min" class="font-semibold text-slate-300">R$ 0,00</span>
+              </div>
+              <div class="flex justify-between text-xs text-slate-400">
+                <span>Faixa Máxima Estimada:</span>
+                <span id="total-max" class="font-semibold text-slate-300">R$ 0,00</span>
+              </div>
+              <div class="pt-3 border-t border-slate-800/80 flex items-baseline justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Total Proposto:</span>
+                  <p class="text-[10px] text-slate-500" id="total-mode-label">(Média de mercado)</p>
+                </div>
+                <span id="total-calculated" class="text-2xl font-black text-emerald-400">R$ 0,00</span>
+              </div>
+            </div>
+
+            <button onclick="window.print()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl transition text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-900/30">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+              Imprimir / Salvar Proposta (PDF)
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-catalog" class="hidden space-y-12">
+      <div class="flex flex-wrap gap-2 pb-4 border-b border-slate-800">
+        <button onclick="filterCatalog('all')" class="cat-filter-btn px-4 py-2 rounded-lg text-xs font-bold bg-emerald-600 text-white" data-cat="all">Todos os Pacotes</button>
+        <button onclick="filterCatalog('instagram')" class="cat-filter-btn px-4 py-2 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="instagram">Instagram</button>
+        <button onclick="filterCatalog('completo')" class="cat-filter-btn px-4 py-2 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="completo">Completo Integrado</button>
+        <button onclick="filterCatalog('local')" class="cat-filter-btn px-4 py-2 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="local">Negócio Local</button>
+        <button onclick="filterCatalog('ecommerce')" class="cat-filter-btn px-4 py-2 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="ecommerce">E-commerce</button>
+        <button onclick="filterCatalog('lancamento')" class="cat-filter-btn px-4 py-2 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="lancamento">Lançamentos</button>
+      </div>
+
+      <div class="catalog-section space-y-6" data-cat="instagram">
+        <div class="border-l-4 border-emerald-500 pl-4">
+          <h3 class="text-xl font-bold text-white">Instagram Estratégico (Perfis ~50.000 seguidores)</h3>
+          <p class="text-sm text-slate-400">Focado em autoridade, engajamento qualificado e conversão de audiência.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Pacote Básico</span>
+              <h4 class="text-lg font-bold text-white mt-1">Serviços Essenciais</h4>
+              <p class="text-2xl font-black text-emerald-400 my-4">R$ 2.000 – 2.500</p>
+              <ul class="text-xs text-slate-300 space-y-2.5">
+                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> Análise inicial, concorrentes e relatório simples</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> Calendário editorial (2-3 temas por semana)</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> Estratégia de hashtags básicas</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> Relatório mensal de métricas</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> Consultoria quinzenal de 30 min</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> Suporte via e-mail (até 48h)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bg-slate-950 border-2 border-emerald-500/50 rounded-2xl p-6 flex flex-col justify-between relative shadow-xl">
+            <span class="absolute -top-3 right-4 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">Mais Escolhido</span>
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Pacote Intermediário</span>
+              <h4 class="text-lg font-bold text-white mt-1">Serviços Personalizados</h4>
+              <p class="text-2xl font-black text-emerald-400 my-4">R$ 3.000 – 4.000</p>
+              <ul class="text-xs text-slate-300 space-y-2.5">
+                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> Análise detalhada de comportamento e concorrência</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> Calendário diário (carrosséis, vídeos, stories) + Copywriting</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> Hashtags otimizadas por tipo de conteúdo</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> Campanhas sazonais & parcerias com microinfluenciadores</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> Relatórios quinzenais com ajustes contínuos</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> Consultoria semanal de 30 min + WhatsApp (até 24h)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Pacote Premium</span>
+              <h4 class="text-lg font-bold text-white mt-1">Completo & Personalizado</h4>
+              <p class="text-2xl font-black text-emerald-400 my-4">R$ 5.000 – 6.000</p>
+              <ul class="text-xs text-slate-300 space-y-2.5">
+                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> Análise de sentimento e diagnóstico aprofundado</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> Calendário diário premium (Reels, carrosséis, diretrizes visuais)</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> Estratégia de SEO no Instagram</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> Gestão de anúncios pagos e campanhas de conversão</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> Relatórios semanais com ROI e taxas de conversão</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span> Treinamento da equipe do cliente + WhatsApp 12h</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-section space-y-6" data-cat="completo">
+        <div class="border-l-4 border-indigo-500 pl-4">
+          <h3 class="text-xl font-bold text-white">Estratégia Completa & Alto Ticket</h3>
+          <p class="text-sm text-slate-400">Integração 360° entre loja física, e-commerce e posicionamento exclusivo de alto valor.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Pacote Básico</span>
+              <h4 class="text-lg font-bold text-white mt-1">Presença Digital Essencial</h4>
+              <p class="text-2xl font-black text-indigo-400 my-4">R$ 4.000 – 5.000</p>
+              <ul class="text-xs text-slate-300 space-y-2.5">
+                <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold">✓</span> Otimização de perfis, Google Meu Negócio e SEO da loja</li>
+                <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold">✓</span> Gestão de 3 redes principais (3 a 4 posts semanais)</li>
+                <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold">✓</span> Promoções cruzadas (loja física + e-commerce)</li>
+                <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold">✓</span> Relatório mensal integrado & consultoria quinzenal (30 min)</li>
+                <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold">✓</span> Suporte via e-mail em até 48h</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bg-slate-950 border-2 border-indigo-500/50 rounded-2xl p-6 flex flex-col justify-between shadow-xl">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">Pacote Intermediário</span>
+              <h4 class="text-lg font-bold text-white mt-1">Estratégia Integrada</h4>
+              <p class="text-2xl font-black text-indigo-400 my-4">R$ 8.000 – 10.000</p>
+              <ul class="text-xs text-slate-300 space-y-2.5">
+                <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold">✓</span> Postagens diárias em 4 redes sociais com CTAs coordenadas</li>
+                <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold">✓</span> Produção de vídeos/stories destacando produtos físicos e online</li>
+                <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold">✓</span> SEO avançado local + nacional no e-commerce</li>
+                <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold">✓</span> Relatórios quinzenais integrados & consultoria semanal (45 min)</li>
+                <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold">✓</span> Suporte WhatsApp em até 24h</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Pacote Premium</span>
+              <h4 class="text-lg font-bold text-white mt-1">Estratégia Completa & Luxo</h4>
+              <p class="text-2xl font-black text-indigo-400 my-4">R$ 15.000 – 20.000</p>
+              <ul class="text-xs text-slate-300 space-y-2.5">
+                <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold">✓</span> Posicionamento focado em alto ticket, exclusividade e luxo</li>
+                <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold">✓</span> Conteúdo diário em redes, blog e e-commerce + vídeos de alta qualidade</li>
+                <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold">✓</span> Anúncios pagos omnicanal (IG, FB, Google Ads, Retargeting)</li>
+                <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold">✓</span> E-mail marketing segmentado & gestão de influenciadores alto ticket</li>
+                <li class="flex items-start gap-2"><span class="text-indigo-400 font-bold">✓</span> Treinamento de equipe, dados em tempo real & WhatsApp 12h</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-section space-y-6" data-cat="local">
+        <div class="border-l-4 border-amber-500 pl-4">
+          <h3 class="text-xl font-bold text-white">Negócio Local & Comunidade</h3>
+          <p class="text-sm text-slate-400">Atrair clientes da região, impulsionar presença no Google Maps e criar retenção física.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Pacote Básico</span>
+              <h4 class="text-lg font-bold text-white mt-1">Visibilidade Local Essencial</h4>
+              <p class="text-2xl font-black text-amber-400 my-4">R$ 2.500 – 3.500</p>
+              <ul class="text-xs text-slate-300 space-y-2.5">
+                <li class="flex items-start gap-2"><span class="text-amber-400 font-bold">✓</span> Otimização Google Meu Negócio, fotos e horários</li>
+                <li class="flex items-start gap-2"><span class="text-amber-400 font-bold">✓</span> 3 postagens semanais com foco regional e promoções</li>
+                <li class="flex items-start gap-2"><span class="text-amber-400 font-bold">✓</span> SEO local básico e hashtags regionais</li>
+                <li class="flex items-start gap-2"><span class="text-amber-400 font-bold">✓</span> Relatório mensal & consultoria quinzenal (30 min)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Pacote Intermediário</span>
+              <h4 class="text-lg font-bold text-white mt-1">Engajamento Local</h4>
+              <p class="text-2xl font-black text-amber-400 my-4">R$ 5.000 – 7.000</p>
+              <ul class="text-xs text-slate-300 space-y-2.5">
+                <li class="flex items-start gap-2"><span class="text-amber-400 font-bold">✓</span> 4 a 5 posts semanais + stories do dia a dia do negócio</li>
+                <li class="flex items-start gap-2"><span class="text-amber-400 font-bold">✓</span> Campanhas promocionais incentivando visitação presencial</li>
+                <li class="flex items-start gap-2"><span class="text-amber-400 font-bold">✓</span> Gestão básica de anúncios no Google & Facebook geolocalizados</li>
+                <li class="flex items-start gap-2"><span class="text-amber-400 font-bold">✓</span> Eventos locais, workshops e parcerias de bairro</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Pacote Premium</span>
+              <h4 class="text-lg font-bold text-white mt-1">Liderança Local & Fidelização</h4>
+              <p class="text-2xl font-black text-amber-400 my-4">R$ 10.000 – 15.000</p>
+              <ul class="text-xs text-slate-300 space-y-2.5">
+                <li class="flex items-start gap-2"><span class="text-amber-400 font-bold">✓</span> Posicionamento de liderança comunitária (histórias de clientes, causas)</li>
+                <li class="flex items-start gap-2"><span class="text-amber-400 font-bold">✓</span> Vídeos de alto padrão, lives e gestão ativa de avaliações no GMB</li>
+                <li class="flex items-start gap-2"><span class="text-amber-400 font-bold">✓</span> Anúncios com retargeting para clientes que visitaram o local</li>
+                <li class="flex items-start gap-2"><span class="text-amber-400 font-bold">✓</span> Estruturação de Programa de Fidelidade & eventos VIP</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-section space-y-6" data-cat="ecommerce">
+        <div class="border-l-4 border-cyan-500 pl-4">
+          <h3 class="text-xl font-bold text-white">E-commerce & Aceleração de Vendas</h3>
+          <p class="text-sm text-slate-400">Aumentar tráfego qualificado, reduzir abandono de carrinho e elevar o Lifetime Value (LTV).</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Pacote Básico</span>
+              <h4 class="text-lg font-bold text-white mt-1">Fundamentos do E-commerce</h4>
+              <p class="text-2xl font-black text-cyan-400 my-4">R$ 3.000 – 4.500</p>
+              <ul class="text-xs text-slate-300 space-y-2.5">
+                <li class="flex items-start gap-2"><span class="text-cyan-400 font-bold">✓</span> Auditoria de UX/velocidade e descrições de produtos</li>
+                <li class="flex items-start gap-2"><span class="text-cyan-400 font-bold">✓</span> Gestão de 3 posts semanais em redes sociais voltados a produtos</li>
+                <li class="flex items-start gap-2"><span class="text-cyan-400 font-bold">✓</span> Gestão básica de Google Ads & Facebook Ads</li>
+                <li class="flex items-start gap-2"><span class="text-cyan-400 font-bold">✓</span> Estratégias simples de cupons, up-selling e cross-selling</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Pacote Intermediário</span>
+              <h4 class="text-lg font-bold text-white mt-1">Aceleração de Vendas</h4>
+              <p class="text-2xl font-black text-cyan-400 my-4">R$ 6.000 – 8.000</p>
+              <ul class="text-xs text-slate-300 space-y-2.5">
+                <li class="flex items-start gap-2"><span class="text-cyan-400 font-bold">✓</span> Otimização completa do funil & recuperação de carrinho abandonado</li>
+                <li class="flex items-start gap-2"><span class="text-cyan-400 font-bold">✓</span> Campanhas avançadas de remarketing e backlinks (SEO)</li>
+                <li class="flex items-start gap-2"><span class="text-cyan-400 font-bold">✓</span> Automações de e-mail marketing segmentadas</li>
+                <li class="flex items-start gap-2"><span class="text-cyan-400 font-bold">✓</span> Desenvolvimento de programas de fidelidade para recompra</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Pacote Premium</span>
+              <h4 class="text-lg font-bold text-white mt-1">Domínio do Mercado</h4>
+              <p class="text-2xl font-black text-cyan-400 my-4">R$ 12.000 – 18.000</p>
+              <ul class="text-xs text-slate-300 space-y-2.5">
+                <li class="flex items-start gap-2"><span class="text-cyan-400 font-bold">✓</span> Estratégia de expansão de nicho, afiliados e unboxing/lives</li>
+                <li class="flex items-start gap-2"><span class="text-cyan-400 font-bold">✓</span> Tráfego pago de alto volume (Google, FB, IG + Retargeting agressivo)</li>
+                <li class="flex items-start gap-2"><span class="text-cyan-400 font-bold">✓</span> Automação completa de nutrição baseada em comportamento de compra</li>
+                <li class="flex items-start gap-2"><span class="text-cyan-400 font-bold">✓</span> Relatórios semanais com análise profunda de LTV e CAC</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-section space-y-6" data-cat="lancamento">
+        <div class="border-l-4 border-rose-500 pl-4">
+          <h3 class="text-xl font-bold text-white">Lançamentos de Infoprodutos (Valores Fixos)</h3>
+          <p class="text-sm text-slate-400">Planejamento e tração para campanhas de infoprodutos (Pré-lançamento, Abertura e Pós-lançamento).</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Pacote Básico</span>
+              <h4 class="text-lg font-bold text-white mt-1">Lançamento Essencial</h4>
+              <p class="text-2xl font-black text-rose-400 my-4">R$ 4.000 – 6.000</p>
+              <ul class="text-xs text-slate-300 space-y-2.5">
+                <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">✓</span> Cronograma básico e definição de metas/KPIs</li>
+                <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">✓</span> Criação de Landing Page simples de captura/vendas</li>
+                <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">✓</span> Sequência de 3 a 4 e-mails pré-lançamento</li>
+                <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">✓</span> Calendário para 3 semanas antes com teasers e contagem</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Pacote Intermediário</span>
+              <h4 class="text-lg font-bold text-white mt-1">Lançamento Acelerado</h4>
+              <p class="text-2xl font-black text-rose-400 my-4">R$ 8.000 – 12.000</p>
+              <ul class="text-xs text-slate-300 space-y-2.5">
+                <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">✓</span> Landing Page otimizada com testes A/B e CRM integrado</li>
+                <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">✓</span> Sequência avançada de e-mails (todas as fases + carrinho)</li>
+                <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">✓</span> Gestão de tráfego pago (FB, IG, Google) + Remarketing</li>
+                <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">✓</span> Roteiros e suporte estratégico para webinars e lives</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Pacote Premium</span>
+              <h4 class="text-lg font-bold text-white mt-1">Domínio de Mercado</h4>
+              <p class="text-2xl font-black text-rose-400 my-4">R$ 15.000 – 25.000</p>
+              <ul class="text-xs text-slate-300 space-y-2.5">
+                <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">✓</span> Landing Page premium integrada a funis complexos (Upsell/Downsell)</li>
+                <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">✓</span> Campanhas virais, desafios, sorteios e conteúdos diários de alto impacto</li>
+                <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">✓</span> Ads multicanal massivo (FB, IG, Google, YouTube Ads)</li>
+                <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">✓</span> Relatórios diários com monitoramento em tempo real</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-variable" class="hidden space-y-8">
+      <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6">
+        <h2 class="text-xl font-bold text-white">Modelo de Parceria: Fixo + Comissão Variável</h2>
+        <p class="text-sm text-slate-400 mt-1 max-w-3xl">
+          Esse modelo reduz o custo fixo de entrada e alinha o retorno financeiro ao faturamento real obtido durante a janela do lançamento do infoproduto.
+        </p>
+
+        <div class="mt-8 bg-slate-900 border border-slate-800 rounded-xl p-6">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-emerald-400 mb-4">Simulador de Faturamento do Lançamento</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
+            <div>
+              <label class="block text-xs text-slate-400 mb-1.5 font-medium">Faturamento Estimado do Lançamento (R$):</label>
+              <input type="number" id="sim-revenue" value="150000" step="10000" oninput="updateVariableCalculations()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-white font-semibold focus:ring-2 focus:ring-emerald-500 outline-none">
+            </div>
+            <div>
+              <label class="block text-xs text-slate-400 mb-1.5 font-medium">Opção de Pacote Selecionada:</label>
+              <select id="sim-variable-tier" onchange="updateVariableCalculations()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2.5 text-white font-semibold focus:ring-2 focus:ring-emerald-500 outline-none">
+                <option value="basic">Básico: R$ 2.000 Fixo + 5% Variável</option>
+                <option value="intermediate" selected>Intermediário: R$ 5.000 Fixo + 7% Variável</option>
+                <option value="premium">Premium: R$ 8.000 Fixo + 10% Variável</option>
+              </select>
+            </div>
+            <div class="bg-slate-950 p-4 rounded-lg border border-slate-800 text-right">
+              <span class="text-xs text-slate-400">Remuneração Total Prevista:</span>
+              <p id="sim-variable-total" class="text-2xl font-black text-emerald-400">R$ 15.500,00</p>
+              <p id="sim-variable-breakdown" class="text-[11px] text-slate-500">(R$ 5.000 Fixo + R$ 10.500 Variável)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Lançamento Essencial</span>
+          <h4 class="text-lg font-bold text-white mt-1">Pacote Básico Misto</h4>
+          <div class="my-4">
+            <span class="text-2xl font-black text-emerald-400">R$ 2.000,00</span>
+            <span class="text-slate-400 text-sm font-semibold"> + 5% sobre vendas</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">
+            O valor fixo cobre os custos iniciais da preparação e execução. A comissão de 5% incentiva a otimização de conversão.
+          </p>
+          <div class="p-3 bg-slate-900 rounded-lg border border-slate-800 text-xs">
+            <span class="text-slate-400 font-semibold">Exemplo oficial:</span>
+            <p class="text-slate-300 mt-1">Para <strong>R$ 100.000</strong> em vendas: <br>Comissão = R$ 5.000 | <span class="text-emerald-400 font-bold">Total = R$ 7.000,00</span></p>
+          </div>
+        </div>
+
+        <div class="bg-slate-950 border-2 border-emerald-500/50 rounded-2xl p-6 shadow-xl relative">
+          <span class="absolute -top-3 right-4 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">Alinhamento Ideal</span>
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Lançamento Acelerado</span>
+          <h4 class="text-lg font-bold text-white mt-1">Pacote Intermediário Misto</h4>
+          <div class="my-4">
+            <span class="text-2xl font-black text-emerald-400">R$ 5.000,00</span>
+            <span class="text-slate-400 text-sm font-semibold"> + 7% sobre vendas</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">
+            Cobre estratégias avançadas, suporte contínuo, tráfego e automação pesada com comissão alinhada ao esforço.
+          </p>
+          <div class="p-3 bg-slate-900 rounded-lg border border-slate-800 text-xs">
+            <span class="text-slate-400 font-semibold">Exemplo oficial:</span>
+            <p class="text-slate-300 mt-1">Para <strong>R$ 150.000</strong> em vendas: <br>Comissão = R$ 10.500 | <span class="text-emerald-400 font-bold">Total = R$ 15.500,00</span></p>
+          </div>
+        </div>
+
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Domínio de Mercado</span>
+          <h4 class="text-lg font-bold text-white mt-1">Pacote Premium Misto</h4>
+          <div class="my-4">
+            <span class="text-2xl font-black text-emerald-400">R$ 8.000,00</span>
+            <span class="text-slate-400 text-sm font-semibold"> + 10% sobre vendas</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">
+            Estratégia totalmente sob medida, gestão multicanal com anúncios de alto impacto e acompanhamento de prontidão.
+          </p>
+          <div class="p-3 bg-slate-900 rounded-lg border border-slate-800 text-xs">
+            <span class="text-slate-400 font-semibold">Exemplo oficial:</span>
+            <p class="text-slate-300 mt-1">Para <strong>R$ 200.000</strong> em vendas: <br>Comissão = R$ 20.000 | <span class="text-emerald-400 font-bold">Total = R$ 28.000,00</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-slate-800 mt-16 py-8 text-center text-xs text-slate-500">
+    Proposta de Serviços Estratégicos • Documento Interativo de Precificação
+  </footer>
+
+  <script>
+    const serviceData = {
+      instagram: {
+        name: 'Instagram (~50k)',
+        tiers: {
+          basic: { name: 'Básico', min: 2000, max: 2500 },
+          intermediate: { name: 'Intermediário', min: 3000, max: 4000 },
+          premium: { name: 'Premium', min: 5000, max: 6000 }
+        }
+      },
+      completo: {
+        name: 'Completo Integrado',
+        tiers: {
+          basic: { name: 'Básico', min: 4000, max: 5000 },
+          intermediate: { name: 'Intermediário', min: 8000, max: 10000 },
+          premium: { name: 'Premium', min: 15000, max: 20000 }
+        }
+      },
+      local: {
+        name: 'Negócio Local',
+        tiers: {
+          basic: { name: 'Básico', min: 2500, max: 3500 },
+          intermediate: { name: 'Intermediário', min: 5000, max: 7000 },
+          premium: { name: 'Premium', min: 10000, max: 15000 }
+        }
+      },
+      ecommerce: {
+        name: 'E-commerce',
+        tiers: {
+          basic: { name: 'Básico', min: 3000, max: 4500 },
+          intermediate: { name: 'Intermediário', min: 6000, max: 8000 },
+          premium: { name: 'Premium', min: 12000, max: 18000 }
+        }
+      },
+      lancamento: {
+        name: 'Lançamentos (Fixo)',
+        tiers: {
+          basic: { name: 'Básico', min: 4000, max: 6000 },
+          intermediate: { name: 'Intermediário', min: 8000, max: 12000 },
+          premium: { name: 'Premium', min: 15000, max: 25000 }
+        }
+      }
+    };
+
+    function formatBRL(value) {
+      return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+    }
+
+    function toggleModule(category) {
+      const checkbox = document.getElementById(`check-${category}`);
+      const select = document.getElementById(`tier-${category}`);
+      select.disabled = !checkbox.checked;
+      calculateProposal();
+    }
+
+    function calculateProposal() {
+      const mode = document.getElementById('price-mode').value;
+      const modeLabel = {
+        min: '(Base no piso mínimo)',
+        avg: '(Média sugerida)',
+        max: '(Base no teto máximo)'
+      }[mode];
+
+      document.getElementById('total-mode-label').innerText = modeLabel;
+
+      let totalMin = 0;
+      let totalMax = 0;
+      let calculatedTotal = 0;
+      const itemsContainer = document.getElementById('proposal-items');
+      itemsContainer.innerHTML = '';
+
+      let hasSelected = false;
+
+      Object.keys(serviceData).forEach(cat => {
+        const checkbox = document.getElementById(`check-${cat}`);
+        if (checkbox && checkbox.checked) {
+          hasSelected = true;
+          const tierKey = document.getElementById(`tier-${cat}`).value;
+          const item = serviceData[cat].tiers[tierKey];
+          
+          totalMin += item.min;
+          totalMax += item.max;
+
+          let chosenPrice = 0;
+          if (mode === 'min') chosenPrice = item.min;
+          else if (mode === 'max') chosenPrice = item.max;
+          else chosenPrice = (item.min + item.max) / 2;
+
+          calculatedTotal += chosenPrice;
+
+          // Renderizar linha no resumo
+          const div = document.createElement('div');
+          div.className = 'flex justify-between items-center text-xs py-1.5 border-b border-slate-800/60';
+          div.innerHTML = `
+            <div>
+              <strong class="text-slate-200">${serviceData[cat].name}</strong>
+              <span class="text-slate-500 block text-[10px]">Nível: ${item.name}</span>
+            </div>
+            <span class="font-bold text-slate-300">${formatBRL(chosenPrice)}</span>
+          `;
+          itemsContainer.appendChild(div);
+        }
+      });
+
+      if (!hasSelected) {
+        itemsContainer.innerHTML = `<p class="text-slate-500 italic text-xs">Nenhum serviço selecionado no momento. Marque as opções ao lado para calcular.</p>`;
+      }
+
+      document.getElementById('total-min').innerText = formatBRL(totalMin);
+      document.getElementById('total-max').innerText = formatBRL(totalMax);
+      document.getElementById('total-calculated').innerText = formatBRL(calculatedTotal);
+    }
+
+    function resetSimulator() {
+      Object.keys(serviceData).forEach(cat => {
+        const checkbox = document.getElementById(`check-${cat}`);
+        const select = document.getElementById(`tier-${cat}`);
+        if (checkbox) checkbox.checked = false;
+        if (select) select.disabled = true;
+      });
+      calculateProposal();
+    }
+
+    function switchTab(tabId) {
+      document.getElementById('view-simulator').classList.add('hidden');
+      document.getElementById('view-catalog').classList.add('hidden');
+      document.getElementById('view-variable').classList.add('hidden');
+
+      document.getElementById('tab-btn-simulator').className = "px-4 py-2 rounded-lg text-sm font-semibold transition text-slate-400 hover:text-white hover:bg-slate-800/60";
+      document.getElementById('tab-btn-catalog').className = "px-4 py-2 rounded-lg text-sm font-semibold transition text-slate-400 hover:text-white hover:bg-slate-800/60";
+      document.getElementById('tab-btn-variable').className = "px-4 py-2 rounded-lg text-sm font-semibold transition text-slate-400 hover:text-white hover:bg-slate-800/60";
+
+      document.getElementById(`view-${tabId}`).classList.remove('hidden');
+      const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+      activeBtn.className = "px-4 py-2 rounded-lg text-sm font-semibold transition bg-emerald-600 text-white shadow-sm";
+    }
+
+    function filterCatalog(category) {
+      const buttons = document.querySelectorAll('.cat-filter-btn');
+      buttons.forEach(btn => {
+        if (btn.getAttribute('data-cat') === category) {
+          btn.className = "cat-filter-btn px-4 py-2 rounded-lg text-xs font-bold bg-emerald-600 text-white";
+        } else {
+          btn.className = "cat-filter-btn px-4 py-2 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700";
+        }
+      });
+
+      const sections = document.querySelectorAll('.catalog-section');
+      sections.forEach(sec => {
+        if (category === 'all' || sec.getAttribute('data-cat') === category) {
+          sec.classList.remove('hidden');
+        } else {
+          sec.classList.add('hidden');
+        }
+      });
+    }
+
+    function updateVariableCalculations() {
+      const revenue = parseFloat(document.getElementById('sim-revenue').value) || 0;
+      const tier = document.getElementById('sim-variable-tier').value;
+
+      let fixo = 0;
+      let percent = 0;
+
+      if (tier === 'basic') {
+        fixo = 2000;
+        percent = 0.05;
+      } else if (tier === 'intermediate') {
+        fixo = 5000;
+        percent = 0.07;
+      } else if (tier === 'premium') {
+        fixo = 8000;
+        percent = 0.10;
+      }
+
+      const variablePart = revenue * percent;
+      const total = fixo + variablePart;
+
+      document.getElementById('sim-variable-total').innerText = formatBRL(total);
+      document.getElementById('sim-variable-breakdown').innerText = `(${formatBRL(fixo)} Fixo + ${formatBRL(variablePart)} Variável de ${(percent * 100).toFixed(0)}%)`;
+    }
+
+    // Inicialização ao carregar
+    document.addEventListener('DOMContentLoaded', () => {
+      // Exemplo pré-marcado (Instagram Intermediário)
+      document.getElementById('check-instagram').checked = true;
+      document.getElementById('tier-instagram').disabled = false;
+      calculateProposal();
+      updateVariableCalculations();
+    });
+  </script>
+</body>
+</html>
