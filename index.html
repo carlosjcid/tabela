@@ -4,31 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tabela de Preços & Simulador de Propostas | Estratégia Digital</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              50: '#f0fdf4',
-              100: '#dcfce7',
-              500: '#22c55e',
-              600: '#16a34a',
-              900: '#14532d',
-            }
-          }
-        }
-      }
-    }
-  </script>
   <style>
+*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:Plus Jakarta Sans,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.visible{visibility:visible}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.-top-3{top:-.75rem}.right-4{right:1rem}.top-0{top:0}.top-24{top:6rem}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.my-4{margin-top:1rem;margin-bottom:1rem}.mb-1{margin-bottom:.25rem}.mb-1\.5{margin-bottom:.375rem}.mb-4{margin-bottom:1rem}.mt-0\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-16{margin-top:4rem}.mt-2{margin-top:.5rem}.mt-8{margin-top:2rem}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-4{height:1rem}.h-5{height:1.25rem}.min-h-\[120px\]{min-height:120px}.min-h-screen{min-height:100vh}.w-4{width:1rem}.w-5{width:1.25rem}.w-full{width:100%}.max-w-3xl{max-width:48rem}.max-w-7xl{max-width:80rem}.cursor-pointer{cursor:pointer}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-end{align-items:flex-end}.items-center{align-items:center}.items-baseline{align-items:baseline}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-x-2>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.5rem*var(--tw-space-x-reverse));margin-left:calc(.5rem*(1 - var(--tw-space-x-reverse)))}.space-y-1>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.25rem*var(--tw-space-y-reverse))}.space-y-12>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(3rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(3rem*var(--tw-space-y-reverse))}.space-y-2>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.5rem*var(--tw-space-y-reverse))}.space-y-2\.5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.625rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.625rem*var(--tw-space-y-reverse))}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem*var(--tw-space-y-reverse))}.space-y-6>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem*var(--tw-space-y-reverse))}.space-y-8>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2rem*var(--tw-space-y-reverse))}.whitespace-nowrap{white-space:nowrap}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-l-4{border-left-width:4px}.border-t{border-top-width:1px}.border-amber-500{--tw-border-opacity:1;border-color:rgb(245 158 11/var(--tw-border-opacity,1))}.border-cyan-500{--tw-border-opacity:1;border-color:rgb(6 182 212/var(--tw-border-opacity,1))}.border-emerald-500{--tw-border-opacity:1;border-color:rgb(16 185 129/var(--tw-border-opacity,1))}.border-emerald-500\/20{border-color:rgba(16,185,129,.2)}.border-emerald-500\/30{border-color:rgba(16,185,129,.3)}.border-emerald-500\/50{border-color:rgba(16,185,129,.5)}.border-indigo-500{--tw-border-opacity:1;border-color:rgb(99 102 241/var(--tw-border-opacity,1))}.border-indigo-500\/50{border-color:rgba(99,102,241,.5)}.border-rose-500{--tw-border-opacity:1;border-color:rgb(244 63 94/var(--tw-border-opacity,1))}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85/var(--tw-border-opacity,1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59/var(--tw-border-opacity,1))}.border-slate-800\/60{border-color:rgba(30,41,59,.6)}.border-slate-800\/80{border-color:rgba(30,41,59,.8)}.bg-emerald-500\/10{background-color:rgba(16,185,129,.1)}.bg-emerald-600{--tw-bg-opacity:1;background-color:rgb(5 150 105/var(--tw-bg-opacity,1))}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42/var(--tw-bg-opacity,1))}.bg-slate-950{--tw-bg-opacity:1;background-color:rgb(2 6 23/var(--tw-bg-opacity,1))}.bg-slate-950\/70{background-color:rgba(2,6,23,.7)}.bg-gradient-to-b{background-image:linear-gradient(to bottom,var(--tw-gradient-stops))}.bg-gradient-to-r{background-image:linear-gradient(to right,var(--tw-gradient-stops))}.from-slate-950{--tw-gradient-from:#020617 var(--tw-gradient-from-position);--tw-gradient-to:rgba(2,6,23,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.via-slate-900{--tw-gradient-to:rgba(15,23,42,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),#0f172a var(--tw-gradient-via-position),var(--tw-gradient-to)}.to-slate-900{--tw-gradient-to:#0f172a var(--tw-gradient-to-position)}.to-slate-950{--tw-gradient-to:#020617 var(--tw-gradient-to-position)}.p-1\.5{padding:.375rem}.p-3{padding:.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-2\.5{padding-left:.625rem;padding-right:.625rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-2\.5{padding-top:.625rem;padding-bottom:.625rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pb-2{padding-bottom:.5rem}.pb-4{padding-bottom:1rem}.pl-4{padding-left:1rem}.pl-8{padding-left:2rem}.pt-3{padding-top:.75rem}.pt-4{padding-top:1rem}.text-center{text-align:center}.text-right{text-align:right}.font-sans{font-family:Plus Jakarta Sans,sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-black{font-weight:900}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.leading-relaxed{line-height:1.625}.leading-snug{line-height:1.375}.tracking-tight{letter-spacing:-.025em}.tracking-wide{letter-spacing:.025em}.tracking-wider{letter-spacing:.05em}.text-amber-400{--tw-text-opacity:1;color:rgb(251 191 36/var(--tw-text-opacity,1))}.text-cyan-400{--tw-text-opacity:1;color:rgb(34 211 238/var(--tw-text-opacity,1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153/var(--tw-text-opacity,1))}.text-emerald-600{--tw-text-opacity:1;color:rgb(5 150 105/var(--tw-text-opacity,1))}.text-indigo-400{--tw-text-opacity:1;color:rgb(129 140 248/var(--tw-text-opacity,1))}.text-rose-400{--tw-text-opacity:1;color:rgb(251 113 133/var(--tw-text-opacity,1))}.text-slate-100{--tw-text-opacity:1;color:rgb(241 245 249/var(--tw-text-opacity,1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240/var(--tw-text-opacity,1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225/var(--tw-text-opacity,1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.underline{text-decoration-line:underline}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color)}.shadow-2xl,.shadow-lg{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color),0 4px 6px -4px var(--tw-shadow-color)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgba(0,0,0,.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color)}.shadow-sm,.shadow-xl{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color),0 8px 10px -6px var(--tw-shadow-color)}.shadow-emerald-900\/30{--tw-shadow-color:rgba(6,78,59,.3);--tw-shadow:var(--tw-shadow-colored)}.outline-none{outline:2px solid transparent;outline-offset:2px}.backdrop-blur{--tw-backdrop-blur:blur(8px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.hover\:border-slate-700:hover{--tw-border-opacity:1;border-color:rgb(51 65 85/var(--tw-border-opacity,1))}.hover\:bg-emerald-500:hover{--tw-bg-opacity:1;background-color:rgb(16 185 129/var(--tw-bg-opacity,1))}.hover\:bg-slate-700:hover{--tw-bg-opacity:1;background-color:rgb(51 65 85/var(--tw-bg-opacity,1))}.hover\:bg-slate-800\/60:hover{background-color:rgba(30,41,59,.6)}.hover\:text-slate-200:hover{--tw-text-opacity:1;color:rgb(226 232 240/var(--tw-text-opacity,1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.focus\:ring-emerald-500:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(16 185 129/var(--tw-ring-opacity,1))}.disabled\:opacity-40:disabled{opacity:.4}@media (min-width:640px){.sm\:flex-row{flex-direction:row}.sm\:items-center{align-items:center}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:pl-0{padding-left:0}}@media (min-width:768px){.md\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.md\:flex-row{flex-direction:row}.md\:items-center{align-items:center}.md\:justify-between{justify-content:space-between}}@media (min-width:1024px){.lg\:col-span-4{grid-column:span 4/span 4}.lg\:col-span-8{grid-column:span 8/span 8}.lg\:grid-cols-12{grid-template-columns:repeat(12,minmax(0,1fr))}.lg\:flex-row{flex-direction:row}.lg\:items-center{align-items:center}.lg\:px-8{padding-left:2rem;padding-right:2rem}}
+ 
     .custom-scrollbar::-webkit-scrollbar {
       width: 6px;
       height: 6px;
@@ -37,10 +18,24 @@
       background: #cbd5e1;
       border-radius: 4px;
     }
+ 
+    /* ===== IMPRESSAO: so a proposta escolhida ===== */
+    #print-area { display: none; }
+    @media print {
+      body { background: #ffffff !important; color: #0f172a !important; }
+      body * { visibility: hidden !important; }
+      #print-area, #print-area * { visibility: visible !important; }
+      #print-area {
+        display: block !important;
+        position: absolute; left: 0; top: 0; width: 100%;
+        padding: 32px 40px;
+      }
+      @page { margin: 1.5cm; }
+    }
   </style>
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen">
-
+ 
   <header class="border-b border-slate-800 bg-slate-950/70 backdrop-blur sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
       <div>
@@ -49,7 +44,7 @@
         </span>
         <h1 class="text-2xl font-bold tracking-tight text-white">Estrutura de Preços & Simulador de Escopo</h1>
       </div>
-
+ 
       <nav class="flex space-x-2 bg-slate-900 p-1.5 rounded-xl border border-slate-800">
         <button onclick="switchTab('simulator')" id="tab-btn-simulator" class="px-4 py-2 rounded-lg text-sm font-semibold transition bg-emerald-600 text-white shadow-sm">
           Simulador de Combinações
@@ -63,9 +58,9 @@
       </nav>
     </div>
   </header>
-
+ 
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-
+ 
     <section id="view-simulator" class="space-y-8">
       <div class="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
         <div class="space-y-1 max-w-3xl">
@@ -89,14 +84,14 @@
           </button>
         </div>
       </div>
-
+ 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         <div class="lg:col-span-8 space-y-4">
           <div class="flex items-center justify-between pb-2 border-b border-slate-800">
             <h3 class="text-base font-bold text-slate-200 uppercase tracking-wider text-xs">Módulos de Serviço Disponíveis</h3>
             <span class="text-xs text-slate-400">Marque as opções para combinar</span>
           </div>
-
+ 
           <div class="service-selector bg-slate-950 border border-slate-800 rounded-xl p-5 hover:border-slate-700 transition" data-category="instagram">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div class="flex items-start gap-3">
@@ -115,7 +110,7 @@
               </div>
             </div>
           </div>
-
+ 
           <div class="service-selector bg-slate-950 border border-slate-800 rounded-xl p-5 hover:border-slate-700 transition" data-category="completo">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div class="flex items-start gap-3">
@@ -134,7 +129,7 @@
               </div>
             </div>
           </div>
-
+ 
           <div class="service-selector bg-slate-950 border border-slate-800 rounded-xl p-5 hover:border-slate-700 transition" data-category="local">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div class="flex items-start gap-3">
@@ -153,7 +148,7 @@
               </div>
             </div>
           </div>
-
+ 
           <div class="service-selector bg-slate-950 border border-slate-800 rounded-xl p-5 hover:border-slate-700 transition" data-category="ecommerce">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div class="flex items-start gap-3">
@@ -172,7 +167,7 @@
               </div>
             </div>
           </div>
-
+ 
           <div class="service-selector bg-slate-950 border border-slate-800 rounded-xl p-5 hover:border-slate-700 transition" data-category="lancamento">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div class="flex items-start gap-3">
@@ -192,18 +187,18 @@
             </div>
           </div>
         </div>
-
+ 
         <div class="lg:col-span-4">
           <div class="sticky top-24 bg-gradient-to-b from-slate-950 to-slate-900 border border-emerald-500/30 rounded-2xl p-6 shadow-2xl space-y-6">
             <div class="border-b border-slate-800 pb-4">
               <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Resumo do Investimento</span>
               <h4 class="text-xl font-extrabold text-white mt-1">Hipótese Selecionada</h4>
             </div>
-
+ 
             <div id="proposal-items" class="space-y-3 min-h-[120px] text-sm">
               <p class="text-slate-500 italic text-xs">Nenhum serviço selecionado no momento. Marque as opções ao lado para calcular.</p>
             </div>
-
+ 
             <div class="pt-4 border-t border-slate-800 space-y-2">
               <div class="flex justify-between text-xs text-slate-400">
                 <span>Faixa Mínima Estimada:</span>
@@ -221,8 +216,8 @@
                 <span id="total-calculated" class="text-2xl font-black text-emerald-400">R$ 0,00</span>
               </div>
             </div>
-
-            <button onclick="window.print()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl transition text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-900/30">
+ 
+            <button onclick="printProposal()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl transition text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-900/30">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
               Imprimir / Salvar Proposta (PDF)
             </button>
@@ -230,7 +225,7 @@
         </div>
       </div>
     </section>
-
+ 
     <section id="view-catalog" class="hidden space-y-12">
       <div class="flex flex-wrap gap-2 pb-4 border-b border-slate-800">
         <button onclick="filterCatalog('all')" class="cat-filter-btn px-4 py-2 rounded-lg text-xs font-bold bg-emerald-600 text-white" data-cat="all">Todos os Pacotes</button>
@@ -240,13 +235,13 @@
         <button onclick="filterCatalog('ecommerce')" class="cat-filter-btn px-4 py-2 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="ecommerce">E-commerce</button>
         <button onclick="filterCatalog('lancamento')" class="cat-filter-btn px-4 py-2 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="lancamento">Lançamentos</button>
       </div>
-
+ 
       <div class="catalog-section space-y-6" data-cat="instagram">
         <div class="border-l-4 border-emerald-500 pl-4">
           <h3 class="text-xl font-bold text-white">Instagram Estratégico (Perfis ~50.000 seguidores)</h3>
           <p class="text-sm text-slate-400">Focado em autoridade, engajamento qualificado e conversão de audiência.</p>
         </div>
-
+ 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
             <div>
@@ -296,13 +291,13 @@
           </div>
         </div>
       </div>
-
+ 
       <div class="catalog-section space-y-6" data-cat="completo">
         <div class="border-l-4 border-indigo-500 pl-4">
           <h3 class="text-xl font-bold text-white">Estratégia Completa & Alto Ticket</h3>
           <p class="text-sm text-slate-400">Integração 360° entre loja física, e-commerce e posicionamento exclusivo de alto valor.</p>
         </div>
-
+ 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
             <div>
@@ -348,13 +343,13 @@
           </div>
         </div>
       </div>
-
+ 
       <div class="catalog-section space-y-6" data-cat="local">
         <div class="border-l-4 border-amber-500 pl-4">
           <h3 class="text-xl font-bold text-white">Negócio Local & Comunidade</h3>
           <p class="text-sm text-slate-400">Atrair clientes da região, impulsionar presença no Google Maps e criar retenção física.</p>
         </div>
-
+ 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
             <div>
@@ -397,13 +392,13 @@
           </div>
         </div>
       </div>
-
+ 
       <div class="catalog-section space-y-6" data-cat="ecommerce">
         <div class="border-l-4 border-cyan-500 pl-4">
           <h3 class="text-xl font-bold text-white">E-commerce & Aceleração de Vendas</h3>
           <p class="text-sm text-slate-400">Aumentar tráfego qualificado, reduzir abandono de carrinho e elevar o Lifetime Value (LTV).</p>
         </div>
-
+ 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
             <div>
@@ -446,13 +441,13 @@
           </div>
         </div>
       </div>
-
+ 
       <div class="catalog-section space-y-6" data-cat="lancamento">
         <div class="border-l-4 border-rose-500 pl-4">
           <h3 class="text-xl font-bold text-white">Lançamentos de Infoprodutos (Valores Fixos)</h3>
           <p class="text-sm text-slate-400">Planejamento e tração para campanhas de infoprodutos (Pré-lançamento, Abertura e Pós-lançamento).</p>
         </div>
-
+ 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
             <div>
@@ -496,14 +491,14 @@
         </div>
       </div>
     </section>
-
+ 
     <section id="view-variable" class="hidden space-y-8">
       <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6">
         <h2 class="text-xl font-bold text-white">Modelo de Parceria: Fixo + Comissão Variável</h2>
         <p class="text-sm text-slate-400 mt-1 max-w-3xl">
           Esse modelo reduz o custo fixo de entrada e alinha o retorno financeiro ao faturamento real obtido durante a janela do lançamento do infoproduto.
         </p>
-
+ 
         <div class="mt-8 bg-slate-900 border border-slate-800 rounded-xl p-6">
           <h3 class="text-sm font-bold uppercase tracking-wider text-emerald-400 mb-4">Simulador de Faturamento do Lançamento</h3>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
@@ -527,7 +522,7 @@
           </div>
         </div>
       </div>
-
+ 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6">
           <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Lançamento Essencial</span>
@@ -544,7 +539,7 @@
             <p class="text-slate-300 mt-1">Para <strong>R$ 100.000</strong> em vendas: <br>Comissão = R$ 5.000 | <span class="text-emerald-400 font-bold">Total = R$ 7.000,00</span></p>
           </div>
         </div>
-
+ 
         <div class="bg-slate-950 border-2 border-emerald-500/50 rounded-2xl p-6 shadow-xl relative">
           <span class="absolute -top-3 right-4 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">Alinhamento Ideal</span>
           <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Lançamento Acelerado</span>
@@ -561,7 +556,7 @@
             <p class="text-slate-300 mt-1">Para <strong>R$ 150.000</strong> em vendas: <br>Comissão = R$ 10.500 | <span class="text-emerald-400 font-bold">Total = R$ 15.500,00</span></p>
           </div>
         </div>
-
+ 
         <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6">
           <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Domínio de Mercado</span>
           <h4 class="text-lg font-bold text-white mt-1">Pacote Premium Misto</h4>
@@ -579,68 +574,98 @@
         </div>
       </div>
     </section>
-
+ 
   </main>
-
+ 
   <footer class="border-t border-slate-800 mt-16 py-8 text-center text-xs text-slate-500">
     Proposta de Serviços Estratégicos • Documento Interativo de Precificação
   </footer>
-
+ 
   <script>
     const serviceData = {
       instagram: {
         name: 'Instagram (~50k)',
         tiers: {
-          basic: { name: 'Básico', min: 2000, max: 2500 },
-          intermediate: { name: 'Intermediário', min: 3000, max: 4000 },
-          premium: { name: 'Premium', min: 5000, max: 6000 }
+          basic: { name: 'Básico', min: 2000, max: 2500,
+            resumo: 'Presença consistente e organizada.',
+            escopo: ['12 posts/mês (feed + stories base)', 'Linha editorial e definição de pilares', 'Legendas e hashtags estratégicas', 'Relatório mensal simplificado', '1 rodada de revisão por entrega'] },
+          intermediate: { name: 'Intermediário', min: 3000, max: 4000,
+            resumo: 'Crescimento ativo com produção de vídeo.',
+            escopo: ['Tudo do Básico, mais:', '16 posts/mês incluindo Reels roteirizados', 'Roteiros de Reels e calendário quinzenal', 'Stories interativos e sequência de engajamento', 'Relatório com análise de métricas + reunião mensal', '2 rodadas de revisão por entrega'] },
+          premium: { name: 'Premium', min: 5000, max: 6000,
+            resumo: 'Operação de autoridade e conversão.',
+            escopo: ['Tudo do Intermediário, mais:', '20+ posts/mês com produção prioritária', 'Estratégia de conversão perfil → DM → venda', 'Gestão de comunidade e resposta a comentários', 'Relatório semanal + 2 reuniões mensais', 'Revisões ilimitadas dentro do ciclo'] }
         }
       },
       completo: {
         name: 'Completo Integrado',
         tiers: {
-          basic: { name: 'Básico', min: 4000, max: 5000 },
-          intermediate: { name: 'Intermediário', min: 8000, max: 10000 },
-          premium: { name: 'Premium', min: 15000, max: 20000 }
+          basic: { name: 'Básico', min: 4000, max: 5000,
+            resumo: 'Fundação digital em um só lugar.',
+            escopo: ['Gestão de 1 rede social principal', 'Site institucional ou landing page única', 'Configuração de WhatsApp Business', 'Relatório mensal consolidado', '1 rodada de revisão por entrega'] },
+          intermediate: { name: 'Intermediário', min: 8000, max: 10000,
+            resumo: 'Ecossistema conectado com automação.',
+            escopo: ['Tudo do Básico, mais:', 'Gestão de 2 redes sociais integradas', 'Automação de atendimento (WhatsApp/DM)', 'Funil de captação de leads configurado', 'Dashboard de acompanhamento + reunião mensal', '2 rodadas de revisão por entrega'] },
+          premium: { name: 'Premium', min: 15000, max: 20000,
+            resumo: 'Máquina de aquisição sob gestão.',
+            escopo: ['Tudo do Intermediário, mais:', 'Gestão multicanal com tráfego pago incluído', 'CRM próprio e automações avançadas (n8n)', 'Agente de IA para triagem e follow-up', 'Relatório semanal + reuniões quinzenais', 'Revisões ilimitadas dentro do ciclo'] }
         }
       },
       local: {
         name: 'Negócio Local',
         tiers: {
-          basic: { name: 'Básico', min: 2500, max: 3500 },
-          intermediate: { name: 'Intermediário', min: 5000, max: 7000 },
-          premium: { name: 'Premium', min: 10000, max: 15000 }
+          basic: { name: 'Básico', min: 2500, max: 3500,
+            resumo: 'Ser encontrado na sua região.',
+            escopo: ['Otimização de perfil no Google (ficha do negócio)', 'Gestão de 1 rede social', 'Estratégia de avaliações e reputação local', 'Relatório mensal', '1 rodada de revisão por entrega'] },
+          intermediate: { name: 'Intermediário', min: 5000, max: 7000,
+            resumo: 'Atrair e converter clientes do bairro.',
+            escopo: ['Tudo do Básico, mais:', 'Campanhas de tráfego local (raio geográfico)', 'Landing page de captação regional', 'Automação de agendamento/contato', 'Relatório com origem dos leads + reunião mensal', '2 rodadas de revisão por entrega'] },
+          premium: { name: 'Premium', min: 10000, max: 15000,
+            resumo: 'Domínio da região e expansão.',
+            escopo: ['Tudo do Intermediário, mais:', 'Gestão de múltiplas unidades ou serviços', 'Tráfego pago escalado com stress test de verba', 'CRM e funil comercial completo', 'Relatório semanal + reuniões quinzenais', 'Revisões ilimitadas dentro do ciclo'] }
         }
       },
       ecommerce: {
         name: 'E-commerce',
         tiers: {
-          basic: { name: 'Básico', min: 3000, max: 4500 },
-          intermediate: { name: 'Intermediário', min: 6000, max: 8000 },
-          premium: { name: 'Premium', min: 12000, max: 18000 }
+          basic: { name: 'Básico', min: 3000, max: 4500,
+            resumo: 'Vitrine organizada e ativa.',
+            escopo: ['Gestão de redes sociais do e-commerce', 'Calendário de posts com foco em produto', 'Configuração de catálogo/loja social', 'Relatório mensal de vendas sociais', '1 rodada de revisão por entrega'] },
+          intermediate: { name: 'Intermediário', min: 6000, max: 8000,
+            resumo: 'Tráfego e recuperação de vendas.',
+            escopo: ['Tudo do Básico, mais:', 'Tráfego pago (Meta/Google) para produtos', 'E-mail e automação de carrinho abandonado', 'Remarketing configurado', 'Dashboard de ROAS + reunião mensal', '2 rodadas de revisão por entrega'] },
+          premium: { name: 'Premium', min: 12000, max: 18000,
+            resumo: 'Escala com performance sob gestão.',
+            escopo: ['Tudo do Intermediário, mais:', 'Gestão de escala de mídia (verba alta)', 'CRO — otimização de conversão da loja', 'Automações avançadas e segmentação de base', 'Relatório semanal + reuniões quinzenais', 'Revisões ilimitadas dentro do ciclo'] }
         }
       },
       lancamento: {
         name: 'Lançamentos (Fixo)',
         tiers: {
-          basic: { name: 'Básico', min: 4000, max: 6000 },
-          intermediate: { name: 'Intermediário', min: 8000, max: 12000 },
-          premium: { name: 'Premium', min: 15000, max: 25000 }
+          basic: { name: 'Básico', min: 4000, max: 6000,
+            resumo: 'Estrutura essencial de lançamento.',
+            escopo: ['Estratégia de lançamento semente', 'Página de captura + página de vendas', 'Sequência de e-mails base', 'Relatório de resultados pós-lançamento', '1 rodada de revisão por entrega'] },
+          intermediate: { name: 'Intermediário', min: 8000, max: 12000,
+            resumo: 'Lançamento com tráfego e aquecimento.',
+            escopo: ['Tudo do Básico, mais:', 'Estratégia de conteúdo de aquecimento', 'Tráfego pago para captação', 'Automação de e-mail e WhatsApp', 'Acompanhamento em tempo real + reunião de balanço', '2 rodadas de revisão por entrega'] },
+          premium: { name: 'Premium', min: 15000, max: 25000,
+            resumo: 'Lançamento completo gerenciado.',
+            escopo: ['Tudo do Intermediário, mais:', 'Arquitetura de funil completo (perpétuo opcional)', 'Gestão de tráfego em escala', 'Equipe de copy e criativos dedicada', 'Sala de comando durante o lançamento', 'Revisões ilimitadas dentro do ciclo'] }
         }
       }
     };
-
+ 
     function formatBRL(value) {
       return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
     }
-
+ 
     function toggleModule(category) {
       const checkbox = document.getElementById(`check-${category}`);
       const select = document.getElementById(`tier-${category}`);
       select.disabled = !checkbox.checked;
       calculateProposal();
     }
-
+ 
     function calculateProposal() {
       const mode = document.getElementById('price-mode').value;
       const modeLabel = {
@@ -648,17 +673,17 @@
         avg: '(Média sugerida)',
         max: '(Base no teto máximo)'
       }[mode];
-
+ 
       document.getElementById('total-mode-label').innerText = modeLabel;
-
+ 
       let totalMin = 0;
       let totalMax = 0;
       let calculatedTotal = 0;
       const itemsContainer = document.getElementById('proposal-items');
       itemsContainer.innerHTML = '';
-
+ 
       let hasSelected = false;
-
+ 
       Object.keys(serviceData).forEach(cat => {
         const checkbox = document.getElementById(`check-${cat}`);
         if (checkbox && checkbox.checked) {
@@ -668,37 +693,43 @@
           
           totalMin += item.min;
           totalMax += item.max;
-
+ 
           let chosenPrice = 0;
           if (mode === 'min') chosenPrice = item.min;
           else if (mode === 'max') chosenPrice = item.max;
           else chosenPrice = (item.min + item.max) / 2;
-
+ 
           calculatedTotal += chosenPrice;
-
-          // Renderizar linha no resumo
+ 
+          // Renderizar bloco no resumo (com escopo do nível escolhido)
+          const escopoHtml = (item.escopo || []).map(linha =>
+            `<li class="flex gap-1.5 text-[11px] text-slate-400 leading-snug"><span class="text-emerald-400 mt-0.5">•</span><span>${linha}</span></li>`
+          ).join('');
           const div = document.createElement('div');
-          div.className = 'flex justify-between items-center text-xs py-1.5 border-b border-slate-800/60';
+          div.className = 'py-2 border-b border-slate-800/60';
           div.innerHTML = `
-            <div>
-              <strong class="text-slate-200">${serviceData[cat].name}</strong>
-              <span class="text-slate-500 block text-[10px]">Nível: ${item.name}</span>
+            <div class="flex justify-between items-start gap-2">
+              <div>
+                <strong class="text-slate-200">${serviceData[cat].name}</strong>
+                <span class="text-emerald-400 block text-[10px] font-semibold uppercase tracking-wide">Nível ${item.name}${item.resumo ? ' — ' + item.resumo : ''}</span>
+              </div>
+              <span class="font-bold text-slate-300 whitespace-nowrap">${formatBRL(chosenPrice)}</span>
             </div>
-            <span class="font-bold text-slate-300">${formatBRL(chosenPrice)}</span>
+            <ul class="mt-2 space-y-1">${escopoHtml}</ul>
           `;
           itemsContainer.appendChild(div);
         }
       });
-
+ 
       if (!hasSelected) {
         itemsContainer.innerHTML = `<p class="text-slate-500 italic text-xs">Nenhum serviço selecionado no momento. Marque as opções ao lado para calcular.</p>`;
       }
-
+ 
       document.getElementById('total-min').innerText = formatBRL(totalMin);
       document.getElementById('total-max').innerText = formatBRL(totalMax);
       document.getElementById('total-calculated').innerText = formatBRL(calculatedTotal);
     }
-
+ 
     function resetSimulator() {
       Object.keys(serviceData).forEach(cat => {
         const checkbox = document.getElementById(`check-${cat}`);
@@ -708,21 +739,21 @@
       });
       calculateProposal();
     }
-
+ 
     function switchTab(tabId) {
       document.getElementById('view-simulator').classList.add('hidden');
       document.getElementById('view-catalog').classList.add('hidden');
       document.getElementById('view-variable').classList.add('hidden');
-
+ 
       document.getElementById('tab-btn-simulator').className = "px-4 py-2 rounded-lg text-sm font-semibold transition text-slate-400 hover:text-white hover:bg-slate-800/60";
       document.getElementById('tab-btn-catalog').className = "px-4 py-2 rounded-lg text-sm font-semibold transition text-slate-400 hover:text-white hover:bg-slate-800/60";
       document.getElementById('tab-btn-variable').className = "px-4 py-2 rounded-lg text-sm font-semibold transition text-slate-400 hover:text-white hover:bg-slate-800/60";
-
+ 
       document.getElementById(`view-${tabId}`).classList.remove('hidden');
       const activeBtn = document.getElementById(`tab-btn-${tabId}`);
       activeBtn.className = "px-4 py-2 rounded-lg text-sm font-semibold transition bg-emerald-600 text-white shadow-sm";
     }
-
+ 
     function filterCatalog(category) {
       const buttons = document.querySelectorAll('.cat-filter-btn');
       buttons.forEach(btn => {
@@ -732,7 +763,7 @@
           btn.className = "cat-filter-btn px-4 py-2 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700";
         }
       });
-
+ 
       const sections = document.querySelectorAll('.catalog-section');
       sections.forEach(sec => {
         if (category === 'all' || sec.getAttribute('data-cat') === category) {
@@ -742,14 +773,85 @@
         }
       });
     }
-
+ 
+    function printProposal() {
+      const mode = document.getElementById('price-mode').value;
+      let totalMin = 0, totalMax = 0, calculatedTotal = 0;
+      const selecionados = [];
+ 
+      Object.keys(serviceData).forEach(cat => {
+        const checkbox = document.getElementById(`check-${cat}`);
+        if (checkbox && checkbox.checked) {
+          const tierKey = document.getElementById(`tier-${cat}`).value;
+          const item = serviceData[cat].tiers[tierKey];
+          totalMin += item.min;
+          totalMax += item.max;
+          let chosen = mode === 'min' ? item.min : mode === 'max' ? item.max : (item.min + item.max) / 2;
+          calculatedTotal += chosen;
+          selecionados.push({ modulo: serviceData[cat].name, item, chosen });
+        }
+      });
+ 
+      if (selecionados.length === 0) {
+        alert('Selecione ao menos um módulo antes de gerar a proposta.');
+        return;
+      }
+ 
+      const hoje = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+      const validade = new Date(Date.now() + 15 * 864e5).toLocaleDateString('pt-BR');
+ 
+      const blocos = selecionados.map(s => {
+        const linhas = (s.item.escopo || []).map(l => `<li style="margin:2px 0;padding-left:14px;position:relative;"><span style="position:absolute;left:0;color:#16a34a;">✓</span>${l}</li>`).join('');
+        return `
+          <div style="margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid #e2e8f0;">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;">
+              <h3 style="margin:0;font-size:16px;color:#0f172a;">${s.modulo}</h3>
+              <strong style="font-size:16px;color:#16a34a;white-space:nowrap;">${formatBRL(s.chosen)}</strong>
+            </div>
+            <p style="margin:2px 0 8px;font-size:12px;color:#16a34a;font-weight:600;text-transform:uppercase;letter-spacing:.04em;">Nível ${s.item.name}${s.item.resumo ? ' — ' + s.item.resumo : ''}</p>
+            <ul style="margin:0;padding:0;list-style:none;font-size:12.5px;color:#334155;line-height:1.5;">${linhas}</ul>
+          </div>`;
+      }).join('');
+ 
+      const modeTxt = { min: 'valor de piso', avg: 'valor sugerido', max: 'valor de teto' }[mode];
+ 
+      document.getElementById('print-area').innerHTML = `
+        <div style="font-family:'Plus Jakarta Sans',sans-serif;color:#0f172a;max-width:720px;margin:0 auto;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid #16a34a;padding-bottom:16px;margin-bottom:24px;">
+            <div>
+              <h1 style="margin:0;font-size:22px;">Proposta de Serviços</h1>
+              <p style="margin:4px 0 0;font-size:12px;color:#64748b;">Estratégia & Crescimento Digital</p>
+            </div>
+            <div style="text-align:right;font-size:11px;color:#64748b;">
+              <p style="margin:0;">Emitida em ${hoje}</p>
+              <p style="margin:2px 0 0;">Válida até ${validade}</p>
+            </div>
+          </div>
+          <p style="font-size:13px;color:#334155;margin-bottom:20px;">Escopo detalhado da opção selecionada. Cada módulo abaixo já traz exatamente o que está incluído no nível escolhido.</p>
+          ${blocos}
+          <div style="margin-top:24px;padding:16px 20px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <p style="margin:0;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#16a34a;font-weight:700;">Investimento Total (${modeTxt})</p>
+              <p style="margin:2px 0 0;font-size:11px;color:#64748b;">Faixa de referência: ${formatBRL(totalMin)} a ${formatBRL(totalMax)}</p>
+            </div>
+            <strong style="font-size:26px;color:#16a34a;">${formatBRL(calculatedTotal)}</strong>
+          </div>
+          <div style="margin-top:22px;font-size:10.5px;color:#94a3b8;line-height:1.5;border-top:1px solid #e2e8f0;padding-top:14px;">
+            <p style="margin:0 0 4px;"><strong>Fora do escopo:</strong> custos de mídia paga, licenças de ferramentas de terceiros e produção presencial não estão inclusos neste valor e são orçados à parte.</p>
+            <p style="margin:0;">Proposta válida por 15 dias a contar da data de emissão. Revisões conforme o nível contratado.</p>
+          </div>
+        </div>`;
+ 
+      window.print();
+    }
+ 
     function updateVariableCalculations() {
       const revenue = parseFloat(document.getElementById('sim-revenue').value) || 0;
       const tier = document.getElementById('sim-variable-tier').value;
-
+ 
       let fixo = 0;
       let percent = 0;
-
+ 
       if (tier === 'basic') {
         fixo = 2000;
         percent = 0.05;
@@ -760,14 +862,14 @@
         fixo = 8000;
         percent = 0.10;
       }
-
+ 
       const variablePart = revenue * percent;
       const total = fixo + variablePart;
-
+ 
       document.getElementById('sim-variable-total').innerText = formatBRL(total);
       document.getElementById('sim-variable-breakdown').innerText = `(${formatBRL(fixo)} Fixo + ${formatBRL(variablePart)} Variável de ${(percent * 100).toFixed(0)}%)`;
     }
-
+ 
     // Inicialização ao carregar
     document.addEventListener('DOMContentLoaded', () => {
       // Exemplo pré-marcado (Instagram Intermediário)
@@ -777,5 +879,8 @@
       updateVariableCalculations();
     });
   </script>
+  <!-- Area exclusiva de impressao: preenchida por buildPrintArea() antes de window.print() -->
+  <div id="print-area"></div>
+ 
 </body>
 </html>
